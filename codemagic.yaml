@@ -6,10 +6,6 @@ workflows:
     
     environment:
       java: 17
-      android_signing:
-        - restorank_keystore
-      groups:
-        - google_credentials
       vars:
         PACKAGE_NAME: "ai.restorank.bridge"
     
@@ -30,19 +26,6 @@ workflows:
           cd $CM_BUILD_DIR
           chmod +x gradlew
           ./gradlew assembleDebug
-      
-      - name: Build release APK
-        script: |
-          cd $CM_BUILD_DIR
-          ./gradlew assembleRelease
     
     artifacts:
       - app/build/outputs/**/*.apk
-    
-    publishing:
-      email:
-        recipients:
-          - your-email@example.com
-        notify:
-          success: true
-          failure: true
